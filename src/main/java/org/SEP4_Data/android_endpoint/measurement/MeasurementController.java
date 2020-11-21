@@ -20,15 +20,7 @@ public class MeasurementController {
 
     @GetMapping("/current")
     public Measurements getMeasurement(){
-//        MeasurementDTO currentM= new MeasurementDTO();
-//        currentM.setId(1);
-//        currentM.setId_device(001);
-//        currentM.setDate(LocalDate.of(2020, 05,01));
-//        currentM.setTime(LocalTime.of(7,15));
-//        currentM.setLight(true);
-//        currentM.setTemperature(28);
-//        currentM.setHumidity(100);
-//        currentM.setCo2(67);
+
 
         Measurements currentM = service.getCurrentMeasurements();
 
