@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Table(name = "Account")
+@Getter
 public class User {
     @Id
     @GeneratedValue

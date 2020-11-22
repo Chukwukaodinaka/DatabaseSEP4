@@ -23,6 +23,7 @@ public class MeasurementDTO {
     private boolean light;
     private int humidity;
     private int co2;
+
 }
 
 
