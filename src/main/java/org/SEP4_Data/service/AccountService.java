@@ -20,4 +20,17 @@ public class AccountService {
         else
             return false;
     }
+
+    public boolean validateCreateAccount(User user)
+    {
+        if (repository.findUsername(user.getUsername()) == null)
+        {
+            repository.createAccount(user.getId(),user.getUsername(),user.getPassword());
+            System.out.println(repository.findUsername(user.getUsername()));
+            return true;
+        }
+        return false;
+    }
+
+
 }
