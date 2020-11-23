@@ -2,10 +2,7 @@ package org.SEP4_Data.iot_gateway_endpoint;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
+import lombok.*;
 
 import org.SEP4_Data.service.PayLoadService;
 import org.SEP4_Data.service.model.PayLoad;
