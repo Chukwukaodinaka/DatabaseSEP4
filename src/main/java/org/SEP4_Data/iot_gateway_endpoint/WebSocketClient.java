@@ -38,7 +38,7 @@ public class WebSocketClient extends TextWebSocketHandler implements Application
     @Autowired
     public WebSocketClient(PayLoadService payLoadService) throws ExecutionException, InterruptedException  {
         var webSocketClient = new StandardWebSocketClient();
-        this.clientSession = webSocketClient.doHandshake(this, new WebSocketHttpHeaders(), URI.create("wss://iotnet.cibicom.dk/app?token=vnoTOQAAABFpb3RuZXQuY2liaWNvbS5kaxOhpkiCUsn0QwqoA8agq88=")).get();
+       // this.clientSession = webSocketClient.doHandshake(this, new WebSocketHttpHeaders(), URI.create("wss://iotnet.cibicom.dk/app?token=vnoTOQAAABFpb3RuZXQuY2liaWNvbS5kaxOhpkiCUsn0QwqoA8agq88=")).get();
         System.out.println("////");
         service = payLoadService;
 
