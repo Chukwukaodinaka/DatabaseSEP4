@@ -1,12 +1,11 @@
 package org.SEP4_Data.service.repository;
 
-import org.SEP4_Data.service.model.Measurements;
+import org.SEP4_Data.service.model.Data;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MeasurementRepo extends JpaRepository<Measurements, Long> {
+public interface MeasurementRepo extends JpaRepository<Data, Long> {
 
-    Measurements findTopByOrderByIdDesc();
+    Data findTopByOrderByIdDesc();
 }
