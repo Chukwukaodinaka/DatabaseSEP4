@@ -14,11 +14,6 @@ import java.time.LocalTime;
 public class MeasurementDTO {
 
     // note - dto made based on DW-ER since there is no SourceDB-ER uploaded
-
-    private int id;
-    private int id_device;
-    private LocalDate date;
-    private LocalTime time;
     private int temperature;
     private boolean light;
     private int humidity;

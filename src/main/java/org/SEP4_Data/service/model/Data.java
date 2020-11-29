@@ -1,17 +1,16 @@
 package org.SEP4_Data.service.model;
 
 import lombok.*;
-import lombok.Data;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@lombok.Data
 @Entity
 @RequiredArgsConstructor
-@NoArgsConstructor
-public class Measurements {
+public class Data {
     @Id
     @GeneratedValue
     private Long id;
@@ -23,9 +22,4 @@ public class Measurements {
     private int co2;
 
     private boolean light;
-
-    private LocalDateTime dateTime;
-
-    @ManyToOne
-    @NonNull private Device device;
 }
