@@ -25,19 +25,18 @@ import java.util.concurrent.ExecutionException;
 
 
 @Component
-public class WebSocketClient extends TextWebSocketHandler implements ApplicationContextAware {
+public class WebSocketClient extends TextWebSocketHandler implements ApplicationContextAware
+{
 
-@NonNull
+    MeasurementDTO dto;
+    @NonNull
     private PayLoadService service;
-MeasurementDTO dto;
-
-
-
     @Getter
     private WebSocketSession clientSession;
 
     @Autowired
-    public WebSocketClient(PayLoadService payLoadService) throws ExecutionException, InterruptedException  {
+    public WebSocketClient(PayLoadService payLoadService) throws ExecutionException, InterruptedException
+    {
         var webSocketClient = new StandardWebSocketClient();
         this.clientSession = webSocketClient.doHandshake(this, new WebSocketHttpHeaders(), URI.create("wss://iotnet.cibicom.dk/app?token=vnoTOQAAABFpb3RuZXQuY2liaWNvbS5kaxOhpkiCUsn0QwqoA8agq88=")).get();
         service = payLoadService;
@@ -45,8 +44,9 @@ MeasurementDTO dto;
     } // link to IoT gateway here
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws JsonProcessingException {
-        System.out.println( "Hamboshdkdkifijdkfkfoskjdjde"+message.getPayload());
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws JsonProcessingException
+    {
+        System.out.println("Hamboshdkdkifijdkfkfoskjdjde" + message.getPayload());
 
         //ObjectMapper mapper = new ObjectMapper();
         //PayLoadDTO value = mapper.readValue(message.getPayload(),PayLoadDTO.class);
@@ -54,18 +54,18 @@ MeasurementDTO dto;
         //Gson gson = new Gson();
         //PayLoadDTO value = gson.fromJson(message.getPayload(),PayLoadDTO.class);
 
-//        System.out.println(value.toString());
+        //        System.out.println(value.toString());
         //MeasurementDTO measurementDTO = changeToMeasurement(value.getData());
 
 
-      //  PayLoadDTO value = new ObjectMapper().readValue(message.getPayload(),PayLoadDTO.class);
+        //  PayLoadDTO value = new ObjectMapper().readValue(message.getPayload(),PayLoadDTO.class);
         //System.out.println(value);
 
 
         //PayLoad payLoad = getPayLoadValue(value);
 
         //payLoad.setData_ID(getData(measurementDTO));
-//        System.out.println(payLoad);
+        //        System.out.println(payLoad);
 
         //if(value.getCmd().equals("gw"))
         //service.addToDataBase(payLoad);
@@ -94,28 +94,29 @@ MeasurementDTO dto;
             return null;
         }
         System.out.println("The String of Data " + data);
-        String temp_string = data.substring(0,4);
-        String hum_String = data.substring(4,8);
-        String co2_String = data.substring(8,12);
+        String temp_string = data.substring(0, 4);
+        String hum_String = data.substring(4, 8);
+        String co2_String = data.substring(8, 12);
         //String light_String = data
 
-        int temp = Integer.parseInt(temp_string,16);
-        int hum = Integer.parseInt(hum_String,16);
-        int co2 = Integer.parseInt(co2_String,16);
-      //  boolean light
+        int temp = Integer.parseInt(temp_string, 16);
+        int hum = Integer.parseInt(hum_String, 16);
+        int co2 = Integer.parseInt(co2_String, 16);
+        //  boolean light
 
         MeasurementDTO measurementDTO = new MeasurementDTO();
         measurementDTO.setTemperature(temp);
         measurementDTO.setHumidity(hum);
         measurementDTO.setCo2(co2);
 
-       // Change to light
+        // Change to light
         measurementDTO.setLight(false);
 
         return measurementDTO;
     }
 
-    private PayLoad getPayLoadValue(PayLoadDTO value) {
+    private PayLoad getPayLoadValue(PayLoadDTO value)
+    {
         PayLoad payLoad = new PayLoad();
         payLoad.setTs(value.getTs());
         payLoad.setToa(value.getToa());
@@ -138,16 +139,16 @@ MeasurementDTO dto;
     {
         Device device = new Device();
         device.setEui(EUI);
-       // device.setLocation(location);
-        device.setName(EUI.substring(0,9));
+        // device.setLocation(location);
+        device.setName(EUI.substring(0, 9));
 
         return device;
     }
 
 
-
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException
+    {
 
     }
 }
