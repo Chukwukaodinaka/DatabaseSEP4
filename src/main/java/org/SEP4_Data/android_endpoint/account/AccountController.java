@@ -15,7 +15,10 @@ public class AccountController {
     private AccountService service;
 
     @GetMapping("/login")
-    public boolean login(@RequestBody User user){
+    public boolean login(@RequestBody UserDTO userDTO){
+        User user = new User();
+        user.setPassword(userDTO.getPassword());
+        user.setUsername(userDTO.getUsername());
         boolean valid = service.validateLogin(user);
 
         return valid;
@@ -23,8 +26,11 @@ public class AccountController {
 
 
     @PostMapping(path = "/createAccount",consumes = "application/json") //localhost:8080/createAccount?username=C &password=c
-    public HttpStatus createAccount(@RequestBody User user)
+    public HttpStatus createAccount(@RequestBody UserDTO userDTO)
     {
+        User user = new User();
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
         System.out.println("user  " + user.getUsername());
         if (service.validateCreateAccount(user))
         {

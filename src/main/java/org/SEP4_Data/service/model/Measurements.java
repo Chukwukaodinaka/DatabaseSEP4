@@ -2,6 +2,7 @@ package org.SEP4_Data.service.model;
 
 import lombok.*;
 import lombok.Data;
+import org.springframework.context.annotation.Bean;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
+
 public class Measurements {
     @Id
     @GeneratedValue
