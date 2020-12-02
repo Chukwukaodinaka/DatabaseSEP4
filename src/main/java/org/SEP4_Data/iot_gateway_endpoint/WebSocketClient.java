@@ -1,6 +1,7 @@
 package org.SEP4_Data.iot_gateway_endpoint;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+<<<<<<< HEAD
 //import com.google.gson.Gson;
 import lombok.*;
 
@@ -8,6 +9,15 @@ import org.SEP4_Data.service.PayLoadService;
 import org.SEP4_Data.service.model.Data;
 import org.SEP4_Data.service.model.Device;
 import org.SEP4_Data.service.model.PayLoad;
+=======
+import com.google.gson.Gson;
+import lombok.*;
+
+import org.SEP4_Data.service.PayLoadService;
+import org.SEP4_Data.service.model.source.Data;
+import org.SEP4_Data.service.model.source.Device;
+import org.SEP4_Data.service.model.source.PayLoad;
+>>>>>>> second_database_datasource
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -48,16 +58,29 @@ public class WebSocketClient extends TextWebSocketHandler implements Application
     {
         System.out.println("Hamboshdkdkifijdkfkfoskjdjde" + message.getPayload());
 
+<<<<<<< HEAD
         //ObjectMapper mapper = new ObjectMapper();
         //PayLoadDTO value = mapper.readValue(message.getPayload(),PayLoadDTO.class);
 
         //Gson gson = new Gson();
         //PayLoadDTO value = gson.fromJson(message.getPayload(),PayLoadDTO.class);
+=======
+        Gson gson = new Gson();
+        PayLoadDTO value = gson.fromJson(message.getPayload(),PayLoadDTO.class);
+
+//        System.out.println(value.toString());
+        MeasurementDTO measurementDTO = changeToMeasurement(value.getData());
+
+
+      //  PayLoadDTO value = new ObjectMapper().readValue(message.getPayload(),PayLoadDTO.class);
+        System.out.println(value);
+>>>>>>> second_database_datasource
 
         //        System.out.println(value.toString());
         //MeasurementDTO measurementDTO = changeToMeasurement(value.getData());
 
 
+<<<<<<< HEAD
         //  PayLoadDTO value = new ObjectMapper().readValue(message.getPayload(),PayLoadDTO.class);
         //System.out.println(value);
 
@@ -69,8 +92,13 @@ public class WebSocketClient extends TextWebSocketHandler implements Application
 
         //if(value.getCmd().equals("gw"))
         //service.addToDataBase(payLoad);
+=======
+        payLoad.setData_ID(getData(measurementDTO));
 
-        // extract the message here(or somewhere else - S from SOLID) and make new measurementDTO, then parse it to DB
+        if(value.getCmd().equals("gw"))
+        service.addToDataBase(payLoad);
+>>>>>>> second_database_datasource
+
     }
 
 

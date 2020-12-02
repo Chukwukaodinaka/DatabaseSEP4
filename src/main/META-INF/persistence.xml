@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <class>org.SEP4_Data.service.model.dw.DDateEntity</class>
+        <class>org.SEP4_Data.service.model.dw.DDeviceEntity</class>
+        <class>org.SEP4_Data.service.model.dw.DMeasurementsEntity</class>
+        <class>org.SEP4_Data.service.model.dw.DTimeEntity</class>
+        <properties>
+            <property name="hibernate.connection.url"
+                      value="jdbc:postgresql://sep420.postgres.database.azure.com:5432/database_DW"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>
