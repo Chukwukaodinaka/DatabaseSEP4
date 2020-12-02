@@ -18,11 +18,13 @@ public class PayLoad {
     @Id
     @GeneratedValue
     private Long id;
-    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @ManyToOne
     @NonNull private Device devide_id;
     private Boolean ack;
     private Long bat;
     private String cmd;
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @OneToOne
     private org.SEP4_Data.service.model.source.Data data_ID;
     private String dr;

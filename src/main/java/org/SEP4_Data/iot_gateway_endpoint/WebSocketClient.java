@@ -49,6 +49,8 @@ public class WebSocketClient extends TextWebSocketHandler implements Application
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws JsonProcessingException
     {
+        System.out.println(message);
+        System.out.println(message.getPayload());
         Gson gson = new Gson();
         PayLoadDTO value = gson.fromJson(message.getPayload(),PayLoadDTO.class);
 

@@ -14,6 +14,5 @@ public class PayLoadService {
 
     public void addToDataBase(PayLoad payLoad){
         payLoadRepo.save(payLoad);
-
     }
 }
