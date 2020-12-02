@@ -10,13 +10,14 @@ import java.sql.Time;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MeasurementControllerDTO {
+public class CurrentMeasurementsDTO {
 
     private Integer temperature;
     private Integer humidity;
     private Integer co2;
     private Boolean light;
     private Long device_id;
+    private String device_location;
     private Date date;
     private String time;
 
