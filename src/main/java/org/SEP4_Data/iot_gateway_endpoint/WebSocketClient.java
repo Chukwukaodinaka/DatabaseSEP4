@@ -1,21 +1,18 @@
 package org.SEP4_Data.iot_gateway_endpoint;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import lombok.*;
 
 import org.SEP4_Data.service.PayLoadService;
-import org.SEP4_Data.service.model.Data;
-import org.SEP4_Data.service.model.Device;
-import org.SEP4_Data.service.model.Measurements;
-import org.SEP4_Data.service.model.PayLoad;
+import org.SEP4_Data.service.model.source.Data;
+import org.SEP4_Data.service.model.source.Device;
+import org.SEP4_Data.service.model.source.PayLoad;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
@@ -23,7 +20,6 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.concurrent.ExecutionException;
 
@@ -52,9 +48,6 @@ MeasurementDTO dto;
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws JsonProcessingException {
         System.out.println( "Hamboshdkdkifijdkfkfoskjdjde"+message.getPayload());
 
-        //ObjectMapper mapper = new ObjectMapper();
-        //PayLoadDTO value = mapper.readValue(message.getPayload(),PayLoadDTO.class);
-
         Gson gson = new Gson();
         PayLoadDTO value = gson.fromJson(message.getPayload(),PayLoadDTO.class);
 
@@ -69,21 +62,10 @@ MeasurementDTO dto;
         PayLoad payLoad = getPayLoadValue(value);
 
         payLoad.setData_ID(getData(measurementDTO));
-//        System.out.println(payLoad);
-
-
-
-
-
-
-
-        //ddd
-        //TODo si,om im the ass]
 
         if(value.getCmd().equals("gw"))
         service.addToDataBase(payLoad);
 
-        // extract the message here(or somewhere else - S from SOLID) and make new measurementDTO, then parse it to DB
     }
 
 

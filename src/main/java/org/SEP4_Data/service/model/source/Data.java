@@ -1,4 +1,4 @@
-package org.SEP4_Data.service.model;
+package org.SEP4_Data.service.model.source;
 
 import lombok.*;
 import org.springframework.lang.NonNull;
