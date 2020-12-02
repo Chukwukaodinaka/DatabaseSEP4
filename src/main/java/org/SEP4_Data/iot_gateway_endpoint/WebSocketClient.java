@@ -54,14 +54,13 @@ public class WebSocketClient extends TextWebSocketHandler implements Application
         Gson gson = new Gson();
         PayLoadDTO value = gson.fromJson(message.getPayload(),PayLoadDTO.class);
 
-        MeasurementDTO measurementDTO = changeToMeasurement(value.getData());
-        PayLoad payLoad = getPayLoadValue(value);
+        if(value.getCmd().equals("gw")) {
+            MeasurementDTO measurementDTO = changeToMeasurement(value.getData());
+            PayLoad payLoad = getPayLoadValue(value);
+            payLoad.setData_ID(getData(measurementDTO));
 
-        payLoad.setData_ID(getData(measurementDTO));
-
-
-        if(value.getCmd().equals("gw"))
-        service.addToDataBase(payLoad);
+            service.addToDataBase(payLoad);
+        }
 
     }
 
@@ -88,20 +87,23 @@ public class WebSocketClient extends TextWebSocketHandler implements Application
         String temp_string = data.substring(0, 4);
         String hum_String = data.substring(4, 8);
         String co2_String = data.substring(8, 12);
-        //String light_String = data
+        String light_String = data.substring(12,16);
 
         int temp = Integer.parseInt(temp_string, 16);
-        int hum = Integer.parseInt(hum_String, 16);
+        int hum = Integer.parseInt(hum_String, 16)/10;
         int co2 = Integer.parseInt(co2_String, 16);
-        //  boolean light
+        int light = Integer.parseInt(light_String, 16);
 
         MeasurementDTO measurementDTO = new MeasurementDTO();
+        float temperature = temp/(float) 10;
+        temp = Integer.parseInt(String.format("%.0f", temperature));
         measurementDTO.setTemperature(temp);
         measurementDTO.setHumidity(hum);
         measurementDTO.setCo2(co2);
-
-        // Change to light
-        measurementDTO.setLight(false);
+        if(light<=100)
+            measurementDTO.setLight(false);
+        else
+            measurementDTO.setLight(true);
 
         return measurementDTO;
     }
