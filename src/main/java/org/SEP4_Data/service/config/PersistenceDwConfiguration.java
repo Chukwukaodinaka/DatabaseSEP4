@@ -1,4 +1,4 @@
-package org.SEP4_Data.config;
+package org.SEP4_Data.service.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -20,22 +20,22 @@ import java.util.HashMap;
 @Configuration
 @PropertySource({ "classpath:application.properties" })
 @EnableJpaRepositories(
-        basePackages = "org.SEP4_Data.service.repository.source",
-        entityManagerFactoryRef = "sourceEntityManager",
-        transactionManagerRef = "sourceTransactionManager"
+        basePackages = "org.SEP4_Data.service.repository.dw",
+        entityManagerFactoryRef = "dwEntityManager",
+        transactionManagerRef = "dwTransactionManager"
 )
-public class PersistenceSourceConfiguration {
+public class PersistenceDwConfiguration {
     @Autowired
     private Environment env;
 
     @Bean
     @Primary
-    public LocalContainerEntityManagerFactoryBean sourceEntityManager() {
+    public LocalContainerEntityManagerFactoryBean dwEntityManager() {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(sourceDataSource());
+        em.setDataSource(dwDataSource());
         em.setPackagesToScan(
-                new String[] { "org.SEP4_Data.service.model.source" });
+                new String[] { "org.SEP4_Data.service.model.dw" });
 
         HibernateJpaVendorAdapter vendorAdapter
                 = new HibernateJpaVendorAdapter();
@@ -50,10 +50,9 @@ public class PersistenceSourceConfiguration {
         return em;
     }
 
-
     @Bean
-    @ConfigurationProperties(prefix="spring.datasource")
-    public DataSource sourceDataSource() {
+    @ConfigurationProperties(prefix="spring.second-datasource")
+    public DataSource dwDataSource() {
 
         DriverManagerDataSource dataSource
                 = new DriverManagerDataSource();
@@ -67,12 +66,12 @@ public class PersistenceSourceConfiguration {
 
 
     @Bean
-    public PlatformTransactionManager sourceTransactionManager() {
+    public PlatformTransactionManager dwTransactionManager() {
 
         JpaTransactionManager transactionManager
                 = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(
-                sourceEntityManager().getObject());
+                dwEntityManager().getObject());
         return transactionManager;
     }
 }
