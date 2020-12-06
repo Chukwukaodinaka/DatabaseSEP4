@@ -31,7 +31,6 @@ import java.util.concurrent.ExecutionException;
 public class WebSocketClient extends TextWebSocketHandler implements ApplicationContextAware
 {
 
-    MeasurementDTO dto;
     @NonNull
     private PayLoadService service;
     @Getter
@@ -54,90 +53,14 @@ public class WebSocketClient extends TextWebSocketHandler implements Application
         Gson gson = new Gson();
         PayLoadDTO value = gson.fromJson(message.getPayload(),PayLoadDTO.class);
 
-        if(value.getCmd().equals("gw")) {
-            MeasurementDTO measurementDTO = changeToMeasurement(value.getData());
-            PayLoad payLoad = getPayLoadValue(value);
-            payLoad.setData_ID(getData(measurementDTO));
 
-            service.addToDataBase(payLoad);
-        }
+        WebSocketHelper helper = new WebSocketHelper(value);
+        PayLoad payLoad = helper.sendPayLoadValue();
+        if (payLoad!=null)
+        service.addToDataBase(payLoad);
+
 
     }
-
-
-    private Data getData(MeasurementDTO measurementDTO)
-    {
-        Data measurements = new Data();
-        measurements.setTemperature(measurementDTO.getTemperature());
-        measurements.setHumidity(measurementDTO.getHumidity());
-        measurements.setCo2(measurementDTO.getCo2());
-        measurements.setLight(measurementDTO.isLight());
-
-        return measurements;
-    }
-
-
-    private MeasurementDTO changeToMeasurement(String data)
-    {
-        if (data == null)
-        {
-            return null;
-        }
-        System.out.println("The String of Data " + data);
-        String temp_string = data.substring(0, 4);
-        String hum_String = data.substring(4, 8);
-        String co2_String = data.substring(8, 12);
-        String light_String = data.substring(12,16);
-
-        int temp = Integer.parseInt(temp_string, 16);
-        int hum = Integer.parseInt(hum_String, 16)/10;
-        int co2 = Integer.parseInt(co2_String, 16);
-        int light = Integer.parseInt(light_String, 16);
-
-        MeasurementDTO measurementDTO = new MeasurementDTO();
-        float temperature = temp/(float) 10;
-        temp = Integer.parseInt(String.format("%.0f", temperature));
-        measurementDTO.setTemperature(temp);
-        measurementDTO.setHumidity(hum);
-        measurementDTO.setCo2(co2);
-        if(light<=100)
-            measurementDTO.setLight(false);
-        else
-            measurementDTO.setLight(true);
-
-        return measurementDTO;
-    }
-
-    private PayLoad getPayLoadValue(PayLoadDTO value)
-    {
-        PayLoad payLoad = new PayLoad();
-        payLoad.setTs(value.getTs());
-        payLoad.setToa(value.getToa());
-        payLoad.setSnr(value.getSnr());
-        payLoad.setBat(value.getBat());
-        payLoad.setTs(value.getTs());
-        payLoad.setFreq(value.getFreq());
-        payLoad.setRssi(value.getRssi());
-        payLoad.setSeqno(value.getSeqno());
-        payLoad.setPort(value.getPort());
-        payLoad.setAck(value.getAck());
-        payLoad.setOffline(value.getOffline());
-        payLoad.setCmd(value.getCmd());
-        payLoad.setDr(value.getDr());
-        payLoad.setDevide_id(getEUI(value.getEUI()));
-        return payLoad;
-    }
-
-    public Device getEUI(String EUI)
-    {
-        Device device = new Device();
-        device.setEui(EUI);
-        // device.setLocation(location);
-        device.setName(EUI.substring(0, 9));
-
-        return device;
-    }
-
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException

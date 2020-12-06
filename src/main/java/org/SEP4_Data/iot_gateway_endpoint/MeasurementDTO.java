@@ -12,8 +12,6 @@ import java.time.LocalTime;
 @Getter
 @Setter
 public class MeasurementDTO {
-
-    // note - dto made based on DW-ER since there is no SourceDB-ER uploaded
     private int temperature;
     private boolean light;
     private int humidity;
