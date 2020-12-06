@@ -12,10 +12,10 @@ import java.sql.Time;
 @AllArgsConstructor
 public class CurrentMeasurementsDTO {
 
-    private Integer temperature;
-    private Integer humidity;
-    private Integer co2;
-    private Boolean light;
+    private int temperature;
+    private double humidity;
+    private int co2;
+    private boolean light;
     private Long device_id;
     private String device_location;
     private Date date;

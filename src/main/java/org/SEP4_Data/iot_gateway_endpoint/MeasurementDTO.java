@@ -12,9 +12,9 @@ import java.time.LocalTime;
 @Getter
 @Setter
 public class MeasurementDTO {
-    private int temperature;
+    private double temperature;
     private boolean light;
-    private int humidity;
+    private double humidity;
     private int co2;
 
 }

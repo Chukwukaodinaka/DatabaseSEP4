@@ -53,15 +53,16 @@ public class WebSocketHelper {
         String light_String = data.substring(12,16);
 
         int temp = Integer.parseInt(temp_string, 16);
-        int hum = Integer.parseInt(hum_String, 16)/10;
+        double temperature = temp/(double) 10;
+        int hum = Integer.parseInt(hum_String, 16);
+        double humidity = hum/(double) 10;
         int co2 = Integer.parseInt(co2_String, 16);
         int light = Integer.parseInt(light_String, 16);
 
         MeasurementDTO measurementDTO = new MeasurementDTO();
-        float temperature = temp/(float) 10;
-        temp = Integer.parseInt(String.format("%.0f", temperature));
-        measurementDTO.setTemperature(temp);
-        measurementDTO.setHumidity(hum);
+
+        measurementDTO.setTemperature(temperature);
+        measurementDTO.setHumidity(humidity);
         measurementDTO.setCo2(co2);
         if(light<=100)
             measurementDTO.setLight(false);

@@ -15,9 +15,9 @@ public class Data {
     @GeneratedValue
     private Long id;
 
-    private int temperature;
+    private double temperature;
 
-    private int humidity;
+    private double humidity;
 
     private int co2;
 
