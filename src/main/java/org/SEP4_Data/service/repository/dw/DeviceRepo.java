@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeviceRepo extends JpaRepository<DDeviceEntity, Integer> {
-    @Query("select u from DDeviceEntity as u where u.dDeviceId =:id")
-    DDeviceEntity findDDateEntityByDDateId(Integer id);
+    @Query("select u from DDeviceEntity as u where u.location =:location")
+    DDeviceEntity findDeviceByLocation(String location);
 }

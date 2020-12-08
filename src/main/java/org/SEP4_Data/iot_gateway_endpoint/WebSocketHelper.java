@@ -11,7 +11,6 @@ import org.SEP4_Data.service.model.source.PayLoad;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class WebSocketHelper {
     PayLoadDTO payLoadDTO;
 

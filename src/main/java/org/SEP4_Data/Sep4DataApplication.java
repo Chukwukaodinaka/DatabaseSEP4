@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.concurrent.ExecutionException;
 
-@SpringBootApplication // that's for skipping DB
+@SpringBootApplication
 @Configuration
 public class Sep4DataApplication implements CommandLineRunner {
 

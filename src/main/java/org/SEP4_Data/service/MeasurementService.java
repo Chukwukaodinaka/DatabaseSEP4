@@ -18,32 +18,9 @@ public class MeasurementService {
     private MeasurementRepo repository;
 
 
-    @Autowired
-    private DeviceRepo deviceRepo;
-
-    @Autowired
-    private DateRepo dateRepo;
-
-    @Autowired
-    private TimeRepo timeRepo;
-
-    public DMeasurementsEntity getCurrentMeasurements(){
-        DMeasurementsEntity current = repository.findTopByOrderByIdDesc();
+    public DMeasurementsEntity getCurrentMeasurements(String location){
+        DMeasurementsEntity current = repository.findCurrentByLocation(location);
         return current;
     }
-
-    public DDeviceEntity getDeviceById(Integer id){
-        DDeviceEntity deviceEntity = deviceRepo.findDDateEntityByDDateId(id);
-        return deviceEntity;
-    }
-    public DDateEntity getDateById(Integer id){
-        DDateEntity dateEntity = dateRepo.findDDateEntityByDDateId(id);
-        return dateEntity;
-    }
-    public DTimeEntity getTimeById(Integer id){
-        DTimeEntity timeEntity = timeRepo.findDDateEntityByDDateId(id);
-        return timeEntity;
-    }
-
 
 }
