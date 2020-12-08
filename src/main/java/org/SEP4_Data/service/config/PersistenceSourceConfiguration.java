@@ -41,8 +41,8 @@ public class PersistenceSourceConfiguration {
                 = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         HashMap<String, Object> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto",
-                env.getProperty("hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.ddl.auto",
+                env.getProperty("hibernate.ddl.auto"));
         properties.put("hibernate.dialect",
                 env.getProperty("hibernate.dialect"));
         em.setJpaPropertyMap(properties);

@@ -87,7 +87,7 @@ public class WebSocketHelper {
         payLoad.setOffline(value.getOffline());
         payLoad.setCmd(value.getCmd());
         payLoad.setDr(value.getDr());
-        payLoad.setDevide_id(getEUI(value.getEUI()));
+        payLoad.setDevice_id(getEUI(value.getEUI()));
         return payLoad;
     }
 
