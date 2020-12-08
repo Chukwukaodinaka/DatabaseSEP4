@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.SEP4_Data.service.model.dw.DMeasurementsEntity;
+import org.SEP4_Data.service.model.dataWarehouse.Dw_FMeasurementsEntity;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,12 +20,12 @@ public class MeasurementController {
     @GetMapping("/current")
     public CurrentMeasurementsDTO getMeasurement(@RequestParam String location){
 
-        DMeasurementsEntity currentM = service.getCurrentMeasurements(location);
+         Dw_FMeasurementsEntity currentM = service.getCurrentMeasurements(location);
 
         double temperature = currentM.getTemperature();
         double humidity = currentM.getHumidity();
         int co2 = currentM.getCo2();
-        boolean light = currentM.getLight();
+        boolean light = currentM.isLight();
 
         CurrentMeasurementsDTO measurementDTO = new CurrentMeasurementsDTO(temperature, humidity, co2, light);
 

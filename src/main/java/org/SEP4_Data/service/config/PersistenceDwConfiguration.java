@@ -35,7 +35,7 @@ public class PersistenceDwConfiguration {
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dwDataSource());
         em.setPackagesToScan(
-                new String[] { "org.SEP4_Data.service.model.dw" });
+                new String[] { "org.SEP4_Data.service.model.dataWarehouse" });
 
         HibernateJpaVendorAdapter vendorAdapter
                 = new HibernateJpaVendorAdapter();

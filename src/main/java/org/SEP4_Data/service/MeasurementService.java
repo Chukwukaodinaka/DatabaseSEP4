@@ -1,15 +1,12 @@
 package org.SEP4_Data.service;
 
-import org.SEP4_Data.service.model.dw.DDateEntity;
-import org.SEP4_Data.service.model.dw.DDeviceEntity;
-import org.SEP4_Data.service.model.dw.DMeasurementsEntity;
-import org.SEP4_Data.service.model.dw.DTimeEntity;
-import org.SEP4_Data.service.repository.dw.DateRepo;
-import org.SEP4_Data.service.repository.dw.DeviceRepo;
+import org.SEP4_Data.service.model.dataWarehouse.Dw_FMeasurementsEntity;
 import org.SEP4_Data.service.repository.dw.MeasurementRepo;
-import org.SEP4_Data.service.repository.dw.TimeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MeasurementService {
@@ -18,9 +15,9 @@ public class MeasurementService {
     private MeasurementRepo repository;
 
 
-    public DMeasurementsEntity getCurrentMeasurements(String location){
-        DMeasurementsEntity current = repository.findCurrentByLocation(location);
-        return current;
+    public Dw_FMeasurementsEntity getCurrentMeasurements(String location){
+        List<Dw_FMeasurementsEntity> current = repository.findCurrentByLocation(location, PageRequest.of(0,1));
+        return current.get(0);
     }
 
 }

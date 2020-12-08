@@ -20,7 +20,7 @@ public class PayLoad {
     private Long id;
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @ManyToOne
-    @NonNull private Device devide_id;
+    @NonNull private Device device_id;
     private Boolean ack;
     private Long bat;
     private String cmd;
