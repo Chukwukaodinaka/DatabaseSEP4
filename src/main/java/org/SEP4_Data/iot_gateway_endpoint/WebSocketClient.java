@@ -8,8 +8,7 @@ import org.SEP4_Data.service.PayLoadService;
 
 import com.google.gson.Gson;
 
-import org.SEP4_Data.service.model.source.Data;
-import org.SEP4_Data.service.model.source.Device;
+
 import org.SEP4_Data.service.model.source.PayLoad;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +22,13 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.concurrent.ExecutionException;
 
 
 @Component
-public class WebSocketClient extends TextWebSocketHandler implements ApplicationContextAware
+public class WebSocketClient extends TextWebSocketHandler
 {
 
     @NonNull
@@ -62,9 +62,17 @@ public class WebSocketClient extends TextWebSocketHandler implements Application
 
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException
+    public  void sendMessage(boolean turnOn)
     {
-
+        try
+        {
+            clientSession.sendMessage(new TextMessage(turnOn + ""));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
+
+
 }
