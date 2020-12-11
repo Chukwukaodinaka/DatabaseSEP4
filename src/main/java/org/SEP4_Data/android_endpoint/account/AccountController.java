@@ -26,7 +26,7 @@ public class AccountController {
 
 
     @PostMapping(path = "/createAccount",consumes = "application/json") //localhost:8080/createAccount?username=C &password=c
-    public HttpStatus createAccount(@RequestBody UserDTO userDTO)
+    public long createAccount(@RequestBody UserDTO userDTO)
     {
         User user = new User();
         user.setUsername(userDTO.getUsername());
@@ -34,11 +34,12 @@ public class AccountController {
         System.out.println("user  " + user.getUsername());
         if (service.validateCreateAccount(user))
         {
-            return HttpStatus.CREATED;
+            User user1= service.getUser(userDTO.getUsername(),userDTO.getPassword());
+            return user1.getId();
         }
         else
         {
-            return HttpStatus.BAD_REQUEST;
+            return 400;
         }
 
     }

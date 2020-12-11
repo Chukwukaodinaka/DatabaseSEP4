@@ -25,11 +25,16 @@ public class AccountService {
     {
         if (repository.findUsername(user.getUsername()) == null)
         {
-            repository.createAccount(user.getId(),user.getUsername(),user.getPassword());
+            repository.createAccount(user.getUsername(),user.getPassword());
             System.out.println(repository.findUsername(user.getUsername()));
             return true;
         }
         return false;
+    }
+
+    public User getUser(String username,String password)
+    {
+        return repository.findUser(username,password);
     }
 
 

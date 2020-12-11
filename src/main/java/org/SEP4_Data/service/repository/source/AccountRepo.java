@@ -17,6 +17,6 @@ public interface AccountRepo extends JpaRepository<User, Long> {
 
     @Transactional
     @Modifying
-    @Query(value  = "insert into Account(id,username,password) values (:id,:username,:password)", nativeQuery = true)
-    void createAccount(@Param("id") long id,@Param("username") String username,@Param("password") String password);
+    @Query(value  = "insert into Account(username,password) values (:username,:password)", nativeQuery = true)
+    void createAccount(@Param("username") String username,@Param("password") String password);
 }
