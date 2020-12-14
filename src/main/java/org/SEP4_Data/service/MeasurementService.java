@@ -17,7 +17,12 @@ public class MeasurementService {
 
     public Dw_FMeasurementsEntity getCurrentMeasurements(String location){
         List<Dw_FMeasurementsEntity> current = repository.findCurrentByLocation(location, PageRequest.of(0,1));
-        return current.get(0);
+        try{
+            return current.get(0);
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("Nothing in database");
+            return new Dw_FMeasurementsEntity();
+        }
     }
 
 }

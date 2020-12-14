@@ -3,8 +3,6 @@ package org.SEP4_Data.service.model.source;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import org.SEP4_Data.service.model.source.Device;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -13,7 +11,6 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class PayLoad {
     @Id
     @GeneratedValue
