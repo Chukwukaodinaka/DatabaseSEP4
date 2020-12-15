@@ -18,10 +18,12 @@ public class LightSwitchController
     @Autowired
     private ApplicationContext context;
 
-    @GetMapping("/lightSwitch")
-    public void getMeasurement(@RequestBody Boolean shouldOn)
+    @GetMapping("/onOfflightSwitch")
+    public void onOffLighSwitch(@RequestBody Boolean stateOfTheSwitch)
     {
         WebSocketClient client = context.getBean(WebSocketClient.class);
-        client.sendMessage(shouldOn);
+        client.sendMessage(stateOfTheSwitch);
     }
+
+
 }

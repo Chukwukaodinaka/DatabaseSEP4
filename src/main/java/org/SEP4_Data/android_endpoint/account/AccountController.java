@@ -14,13 +14,12 @@ public class AccountController {
     @NonNull
     private AccountService service;
 
-    @GetMapping("/login")
+    @PostMapping(path ="/login",consumes = "application/json")
     public boolean login(@RequestBody UserDTO userDTO){
         User user = new User();
         user.setPassword(userDTO.getPassword());
         user.setUsername(userDTO.getUsername());
         boolean valid = service.validateLogin(user);
-
         return valid;
     }
 

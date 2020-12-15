@@ -62,11 +62,11 @@ public class WebSocketClient extends TextWebSocketHandler
 
     }
 
-    public  void sendMessage(boolean turnOn)
+    public  void sendMessage(boolean state)
     {
         try
         {
-            clientSession.sendMessage(new TextMessage(turnOn + ""));
+            clientSession.sendMessage(new TextMessage(state + ""));
         }
         catch (IOException e)
         {

@@ -12,15 +12,17 @@ import org.SEP4_Data.service.model.dataWarehouse.Dw_FMeasurementsEntity;
 
 @RestController
 @RequiredArgsConstructor
-public class MeasurementController {
+public class MeasurementController
+{
 
     @NonNull
     private MeasurementService service;
 
     @GetMapping("/current")
-    public CurrentMeasurementsDTO getMeasurement(@RequestParam String location){
+    public CurrentMeasurementsDTO getMeasurement(@RequestParam String location)
+    {
 
-         Dw_FMeasurementsEntity currentM = service.getCurrentMeasurements(location);
+        Dw_FMeasurementsEntity currentM = service.getCurrentMeasurements(location);
 
         double temperature = currentM.getTemperature();
         double humidity = currentM.getHumidity();
