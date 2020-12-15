@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.SEP4_Data.service.AccountService;
 import org.SEP4_Data.service.model.source.User;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,7 +27,7 @@ public class AccountController {
 
 
     @PostMapping(path = "/createAccount",consumes = "application/json") //localhost:8080/createAccount?username=C &password=c
-    public long createAccount(@RequestBody UserDTO userDTO)
+    public ResponseEntity createAccount(@RequestBody UserDTO userDTO)
     {
         User user = new User();
         user.setUsername(userDTO.getUsername());
@@ -34,12 +35,11 @@ public class AccountController {
         System.out.println("user  " + user.getUsername());
         if (service.validateCreateAccount(user))
         {
-            User user1= service.getUser(userDTO.getUsername(),userDTO.getPassword());
-            return user1.getId();
+            return new ResponseEntity(HttpStatus.OK);
         }
         else
         {
-            return 400;
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
 
     }
