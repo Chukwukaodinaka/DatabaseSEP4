@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.Timestamp;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @RequiredArgsConstructor
 @Getter
@@ -27,4 +29,6 @@ public class PayLoadDTO {
     private Long bat;
     private Boolean offline;
     private String data;
+    private String time;
 }
+//{​​"cmd":"rx","seqno":1102,"EUI":"0004A30B00259D2C","ts":1608138185016,"fcnt":0,"port":1,"freq":867100000,"rssi":-111,"snr":1,"toa":0,"dr":"SF12 BW125 4/5","ack":false,"bat":255,"offline":false,"data":"00000000000000000000000000000000"}​​
