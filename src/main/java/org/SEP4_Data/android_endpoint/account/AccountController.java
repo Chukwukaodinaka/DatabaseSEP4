@@ -17,12 +17,17 @@ public class AccountController {
 
 
     @PostMapping(path ="/login",consumes = "application/json")
-    public boolean login(@RequestBody UserDTO userDTO){
+    public ResponseEntity login(@RequestBody UserDTO userDTO) {
         User user = new User();
         user.setPassword(userDTO.getPassword());
         user.setUsername(userDTO.getUsername());
         boolean valid = service.validateLogin(user);
-        return valid;
+
+        if (valid){
+            return new ResponseEntity(HttpStatus.OK);
+        }else{
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
     }
 
 
