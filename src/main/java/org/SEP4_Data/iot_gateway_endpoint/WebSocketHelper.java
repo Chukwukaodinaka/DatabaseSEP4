@@ -18,6 +18,7 @@ public class WebSocketHelper
     PayLoadDTO payLoadDTO;
 
 
+
     public PayLoad sendPayLoadValue()
     {
         PayLoad payLoad = null;
@@ -76,16 +77,17 @@ public class WebSocketHelper
         return measurementDTO;
     }
 
+
     private PayLoad getPayLoadValue(PayLoadDTO value)
     {
         PayLoad payLoad = new PayLoad();
         payLoad.setTs(value.getTs());
         payLoad.setToa(value.getToa());
-        payLoad.setSnr(value.getGws().getSnr());
+        payLoad.setSnr(value.getGws()[0].getSnr());
         payLoad.setBat(value.getBat());
         payLoad.setTs(value.getTs());
         payLoad.setFreq(value.getFreq());
-        payLoad.setRssi(value.getGws().getRssi());
+        payLoad.setRssi(value.getGws()[0].getRssi());
         payLoad.setSeqno(value.getSeqno());
         payLoad.setPort(value.getPort());
         payLoad.setAck(value.getAck());
@@ -95,14 +97,14 @@ public class WebSocketHelper
         payLoad.setDevice_id(getEUI(value.getEUI()));
 
 
-        String date = value.getGws().getTime();
+        String date = value.getGws()[0].getTime();
 
         int year, month, dayOfMonth, hour, minute;
-        year = Integer.parseInt(date.substring(0, 3));
-        month = Integer.parseInt(date.substring(6, 7));
-        dayOfMonth = Integer.parseInt(date.substring(9, 10));
-        hour = Integer.parseInt(date.substring(12, 13));
-        minute = Integer.parseInt(date.substring(15, 16));
+        year = Integer.parseInt(date.substring(0, 4));
+        month = Integer.parseInt(date.substring(5, 7));
+        dayOfMonth = Integer.parseInt(date.substring(8, 10));
+        hour = Integer.parseInt(date.substring(11, 13));
+        minute = Integer.parseInt(date.substring(14, 16));
         LocalDateTime localDateTime = LocalDateTime.of(year,month,dayOfMonth,hour,minute);
 
         payLoad.setDateTime(localDateTime);

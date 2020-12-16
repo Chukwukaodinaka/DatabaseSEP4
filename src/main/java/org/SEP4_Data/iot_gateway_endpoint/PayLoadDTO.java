@@ -24,9 +24,9 @@ public class PayLoadDTO {
     private Long toa;
     private String dr;
     private Boolean ack;
+    private GwsDTO[] gws;
 
     private Boolean offline;
-    private GwsDTO gws;
     private Long bat;
     private String data;
 }
