@@ -81,19 +81,22 @@ public class WebSocketHelper
         PayLoad payLoad = new PayLoad();
         payLoad.setTs(value.getTs());
         payLoad.setToa(value.getToa());
-        payLoad.setSnr(value.getSnr());
+        payLoad.setSnr(value.getGws().getSnr());
         payLoad.setBat(value.getBat());
         payLoad.setTs(value.getTs());
         payLoad.setFreq(value.getFreq());
-        payLoad.setRssi(value.getRssi());
+        payLoad.setRssi(value.getGws().getRssi());
         payLoad.setSeqno(value.getSeqno());
         payLoad.setPort(value.getPort());
         payLoad.setAck(value.getAck());
-        payLoad.setOffline(value.getOffline());
+        payLoad.setOffline(value.getOffline()); // <--- they stopped sending us this
         payLoad.setCmd(value.getCmd());
         payLoad.setDr(value.getDr());
         payLoad.setDevice_id(getEUI(value.getEUI()));
-        String date = value.getTime();
+
+
+        String date = value.getGws().getTime();
+
         int year, month, dayOfMonth, hour, minute;
         year = Integer.parseInt(date.substring(0, 3));
         month = Integer.parseInt(date.substring(6, 7));
@@ -101,6 +104,9 @@ public class WebSocketHelper
         hour = Integer.parseInt(date.substring(12, 13));
         minute = Integer.parseInt(date.substring(15, 16));
         LocalDateTime localDateTime = LocalDateTime.of(year,month,dayOfMonth,hour,minute);
+
+        payLoad.setDateTime(localDateTime);
+
         return payLoad;
     }
 
