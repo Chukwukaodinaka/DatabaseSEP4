@@ -8,21 +8,26 @@ import org.SEP4_Data.service.model.source.Data;
 import org.SEP4_Data.service.model.source.Device;
 import org.SEP4_Data.service.model.source.PayLoad;
 
+import java.time.LocalDateTime;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class WebSocketHelper {
+public class WebSocketHelper
+{
     PayLoadDTO payLoadDTO;
 
 
     public PayLoad sendPayLoadValue()
     {
         PayLoad payLoad = null;
-        if(payLoadDTO.getCmd().equals("gw")) {
-        MeasurementDTO measurementDTO = changeToMeasurement(payLoadDTO.getData());
-         payLoad = getPayLoadValue(payLoadDTO);
-        payLoad.setData_ID(getData(measurementDTO));
-         }
+        if (payLoadDTO.getCmd().equals("gw"))
+        {
+            MeasurementDTO measurementDTO = changeToMeasurement(payLoadDTO.getData());
+            System.out.println("!!!!!!!!!!!!!!!!!!!!" + payLoadDTO);
+            payLoad = getPayLoadValue(payLoadDTO);
+            payLoad.setData_ID(getData(measurementDTO));
+        }
         return payLoad;
     }
 
@@ -49,12 +54,12 @@ public class WebSocketHelper {
         String temp_string = data.substring(0, 4);
         String hum_String = data.substring(4, 8);
         String co2_String = data.substring(8, 12);
-        String light_String = data.substring(12,16);
+        String light_String = data.substring(12, 16);
 
         int temp = Integer.parseInt(temp_string, 16);
-        double temperature = temp/(double) 10;
+        double temperature = temp / (double) 10;
         int hum = Integer.parseInt(hum_String, 16);
-        double humidity = hum/(double) 10;
+        double humidity = hum / (double) 10;
         int co2 = Integer.parseInt(co2_String, 16);
         int light = Integer.parseInt(light_String, 16);
 
@@ -63,7 +68,7 @@ public class WebSocketHelper {
         measurementDTO.setTemperature(temperature);
         measurementDTO.setHumidity(humidity);
         measurementDTO.setCo2(co2);
-        if(light<=100)
+        if (light <= 100)
             measurementDTO.setLight(false);
         else
             measurementDTO.setLight(true);
@@ -88,6 +93,14 @@ public class WebSocketHelper {
         payLoad.setCmd(value.getCmd());
         payLoad.setDr(value.getDr());
         payLoad.setDevice_id(getEUI(value.getEUI()));
+        String date = value.getTime();
+        int year, month, dayOfMonth, hour, minute;
+        year = Integer.parseInt(date.substring(0, 3));
+        month = Integer.parseInt(date.substring(6, 7));
+        dayOfMonth = Integer.parseInt(date.substring(9, 10));
+        hour = Integer.parseInt(date.substring(12, 13));
+        minute = Integer.parseInt(date.substring(15, 16));
+        LocalDateTime localDateTime = LocalDateTime.of(year,month,dayOfMonth,hour,minute);
         return payLoad;
     }
 
