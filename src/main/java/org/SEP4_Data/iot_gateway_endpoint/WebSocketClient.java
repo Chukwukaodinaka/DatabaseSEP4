@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import lombok.*;
 
+import org.SEP4_Data.service.AccountService;
+import org.SEP4_Data.service.MeasurementService;
 import org.SEP4_Data.service.PayLoadService;
 
 import com.google.gson.Gson;
@@ -33,6 +35,8 @@ public class WebSocketClient extends TextWebSocketHandler
 
     @NonNull
     private PayLoadService service;
+
+
     @Getter
     private WebSocketSession clientSession;
 
@@ -42,6 +46,9 @@ public class WebSocketClient extends TextWebSocketHandler
         var webSocketClient = new StandardWebSocketClient();
         this.clientSession = webSocketClient.doHandshake(this, new WebSocketHttpHeaders(), URI.create("wss://iotnet.cibicom.dk/app?token=vnoTOQAAABFpb3RuZXQuY2liaWNvbS5kaxOhpkiCUsn0QwqoA8agq88=")).get();
         service = payLoadService;
+
+
+
 
     }
 

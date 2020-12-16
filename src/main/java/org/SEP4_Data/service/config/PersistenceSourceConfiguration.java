@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 
 @Configuration
-@PropertySource({ "classpath:application.properties" })
+@PropertySource({"classpath:application.properties" })
 @EnableJpaRepositories(
         basePackages = "org.SEP4_Data.service.repository.source",
         entityManagerFactoryRef = "sourceEntityManager",
@@ -67,6 +67,7 @@ public class PersistenceSourceConfiguration {
 
 
     @Bean
+
     public PlatformTransactionManager sourceTransactionManager() {
 
         JpaTransactionManager transactionManager

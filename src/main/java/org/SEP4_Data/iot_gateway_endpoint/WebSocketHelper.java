@@ -95,7 +95,7 @@ public class WebSocketHelper {
     {
         Device device = new Device();
         device.setEui(EUI);
-        // device.setLocation(location);
+       //  device.setLocation(location);
         device.setName(EUI.substring(0, 9));
 
         return device;
