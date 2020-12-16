@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 
 @Configuration
-@PropertySource({ "classpath:application.properties" })
+@PropertySource({"classpath:application.properties" })
 @EnableJpaRepositories(
         basePackages = "org.SEP4_Data.service.repository.source",
         entityManagerFactoryRef = "sourceEntityManager",
@@ -41,8 +41,8 @@ public class PersistenceSourceConfiguration {
                 = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         HashMap<String, Object> properties = new HashMap<>();
-        properties.put("hibernate.ddl.auto",
-                env.getProperty("hibernate.ddl.auto"));
+        properties.put("hibernate.hbm2ddl.auto",
+                env.getProperty("hibernate.hbm2ddl.auto"));
         properties.put("hibernate.dialect",
                 env.getProperty("hibernate.dialect"));
         em.setJpaPropertyMap(properties);
@@ -67,6 +67,7 @@ public class PersistenceSourceConfiguration {
 
 
     @Bean
+
     public PlatformTransactionManager sourceTransactionManager() {
 
         JpaTransactionManager transactionManager
