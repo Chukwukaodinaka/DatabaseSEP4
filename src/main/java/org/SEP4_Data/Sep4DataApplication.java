@@ -16,19 +16,11 @@ import java.util.concurrent.ExecutionException;
 
 @SpringBootApplication
 @Configuration
-public class Sep4DataApplication implements CommandLineRunner {
+public class Sep4DataApplication {
 
-	@Autowired
-	private ApplicationContext context;
-
-	public static void main(String[] args) throws ExecutionException, InterruptedException {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(Sep4DataApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("#################################");
-		System.out.println(context.getDisplayName());
-		WebSocketClient client = context.getBean(WebSocketClient.class);
-	}
 }

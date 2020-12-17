@@ -13,14 +13,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class MeasurementIdentity implements Serializable {
-
-
-
+public class MeasurementIdentity implements Serializable
+{
     private Integer d_device_Id;
-
     private Integer d_date_Id;
-
     private Integer d_time_Id;
 
     @Basic
@@ -58,7 +54,6 @@ public class MeasurementIdentity implements Serializable {
     {
         this.d_time_Id = dTimeId;
     }
-
 
 
 }

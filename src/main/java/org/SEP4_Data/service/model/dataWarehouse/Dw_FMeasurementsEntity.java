@@ -15,7 +15,7 @@ public class Dw_FMeasurementsEntity
     @EmbeddedId
     MeasurementIdentity id;
     private int co2;
-    private int humidity;
+    private double humidity;
     private boolean light;
-    private int temperature;
+    private double temperature;
 }
