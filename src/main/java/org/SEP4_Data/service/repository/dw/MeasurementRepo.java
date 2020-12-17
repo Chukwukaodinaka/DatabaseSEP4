@@ -18,13 +18,13 @@ public interface MeasurementRepo extends JpaRepository<Dw_FMeasurementsEntity, M
     List< Dw_FMeasurementsEntity >findCurrentByLocation(@Param("location") String location, Pageable pageable);
 
     @Query(value = "select m.temperature from Dw_FMeasurementsEntity as m Inner join Dw_DDateEntity as da on m.id.d_date_Id = da.dDateId INNER JOIN Dw_DDeviceEntity as d on m.id.d_device_Id = d.d_Device_Id where d.location =:location and da.date >=:from and da.date <=:to")
-    List<Float> getTempHistory(@Param("location") String location, @Param("from") Date from, @Param("to") Date to);
+    List<Double> getTempHistory(@Param("location") String location, @Param("from") Date from, @Param("to") Date to);
 
     @Query(value = "select m.co2 from Dw_FMeasurementsEntity as m Inner join Dw_DDateEntity as da on m.id.d_date_Id = da.dDateId INNER JOIN Dw_DDeviceEntity as d on m.id.d_device_Id = d.d_Device_Id where d.location =:location and da.date >=:from and da.date <=:to")
     List<Float> getCo2History(@Param("location") String location, @Param("from")Date from, @Param("to") Date to);
 
     @Query(value = "select m.humidity from Dw_FMeasurementsEntity as m Inner join Dw_DDateEntity as da on m.id.d_date_Id = da.dDateId INNER JOIN Dw_DDeviceEntity as d on m.id.d_device_Id = d.d_Device_Id where d.location =:location and da.date >=:from and da.date <=:to")
-    List<Float> getHumidityHistory(@Param("location") String location, @Param("from")Date from, @Param("to") Date to);
+    List<Double> getHumidityHistory(@Param("location") String location, @Param("from")Date from, @Param("to") Date to);
 
     @Query(value = "select m.light from Dw_FMeasurementsEntity as m Inner join Dw_DDateEntity as da on m.id.d_date_Id = da.dDateId INNER JOIN Dw_DDeviceEntity as d on m.id.d_device_Id = d.d_Device_Id where d.location =:location and da.date >=:from and da.date <=:to")
     List<Boolean> getLightHistory(@Param("location") String location, @Param("from")Date from, @Param("to") Date to);

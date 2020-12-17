@@ -20,25 +20,25 @@ public class HistoryController {
 
 
     @GetMapping("/tempHistory")
-    public List<Float> getTempHistory(@RequestBody HistoryDTO historyDTO )
+    public List<Double> getTempHistory(@RequestParam HistoryDTO historyDTO )
     {
        return  service.getTempHistory(historyDTO.location,historyDTO.from,historyDTO.to);
     }
 
     @GetMapping("/humidityHistory")
-    public List<Float> gethumHistory(@RequestBody HistoryDTO historyDTO )
+    public List<Double> gethumHistory(@RequestParam HistoryDTO historyDTO )
     {
         return  service.getHumidityHistory(historyDTO.location,historyDTO.from,historyDTO.to);
     }
 
     @GetMapping("/lightHistory")
-    public List<Boolean> getLightHistory(@RequestBody HistoryDTO historyDTO )
+    public List<Boolean> getLightHistory(@RequestParam HistoryDTO historyDTO )
     {
         return  service.getLightHistory(historyDTO.location,historyDTO.from,historyDTO.to);
     }
 
     @GetMapping("/co2History")
-    public List<Float> getco2History(@RequestBody HistoryDTO historyDTO )
+    public List<Float> getco2History(@RequestParam HistoryDTO historyDTO )
     {
         return  service.getCo2History(historyDTO.location,historyDTO.from,historyDTO.to);
     }

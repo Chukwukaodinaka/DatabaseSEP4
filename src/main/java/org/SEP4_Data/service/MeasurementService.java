@@ -27,9 +27,9 @@ public class MeasurementService {
         }
     }
 
-    public List<Float> getTempHistory(String location, LocalDate from, LocalDate to)
+    public List<Double> getTempHistory(String location, LocalDate from, LocalDate to)
     {
-        List<Float> tempHistory = repository.getTempHistory(location, Date.valueOf(from),Date.valueOf(to));
+        List<Double> tempHistory = repository.getTempHistory(location, Date.valueOf(from),Date.valueOf(to));
         return tempHistory;
     }
 
@@ -39,9 +39,9 @@ public class MeasurementService {
         return tempHistory;
     }
 
-    public List<Float> getHumidityHistory(String location, LocalDate from, LocalDate to)
+    public List<Double> getHumidityHistory(String location, LocalDate from, LocalDate to)
     {
-        List<Float> tempHistory = repository.getHumidityHistory(location,Date.valueOf(from),Date.valueOf(to));
+        List<Double> tempHistory = repository.getHumidityHistory(location,Date.valueOf(from),Date.valueOf(to));
         return tempHistory;
     }
 

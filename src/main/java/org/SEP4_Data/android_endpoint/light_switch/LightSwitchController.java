@@ -19,8 +19,9 @@ public class LightSwitchController
     private ApplicationContext context;
 
     @GetMapping("/onOfflightSwitch")
-    public void onOffLighSwitch(@RequestBody Boolean stateOfTheSwitch)
+    public void onOffLighSwitch(@RequestParam Boolean stateOfTheSwitch)
     {
+        System.out.println(stateOfTheSwitch);
         WebSocketClient client = context.getBean(WebSocketClient.class);
         client.sendMessage(stateOfTheSwitch);
     }

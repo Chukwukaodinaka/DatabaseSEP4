@@ -31,7 +31,7 @@ public class AccountController {
     }
 
 
-    @PostMapping(path = "/createAccount",consumes = "application/json") //localhost:8080/createAccount?username=C &password=c
+    @PostMapping(path = "/createAccount",consumes = "application/json")
     public ResponseEntity createAccount(@RequestBody UserDTO userDTO)
     {
         User user = new User();
