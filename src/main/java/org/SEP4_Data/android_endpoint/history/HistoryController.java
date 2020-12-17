@@ -22,7 +22,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HistoryController
 {
-
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @NonNull
     private MeasurementService service;
