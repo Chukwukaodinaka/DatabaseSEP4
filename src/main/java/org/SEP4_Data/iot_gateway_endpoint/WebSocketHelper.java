@@ -3,7 +3,6 @@ package org.SEP4_Data.iot_gateway_endpoint;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.SEP4_Data.service.model.source.Data;
 import org.SEP4_Data.service.model.source.Device;
 import org.SEP4_Data.service.model.source.PayLoad;
@@ -25,7 +24,6 @@ public class WebSocketHelper
         if (payLoadDTO.getCmd().equals("gw"))
         {
             MeasurementDTO measurementDTO = changeToMeasurement(payLoadDTO.getData());
-            System.out.println("!!!!!!!!!!!!!!!!!!!!" + payLoadDTO);
             payLoad = getPayLoadValue(payLoadDTO);
             payLoad.setData_ID(getData(measurementDTO));
         }
@@ -51,7 +49,6 @@ public class WebSocketHelper
         {
             return null;
         }
-        System.out.println("The String of Data " + data);
         String temp_string = data.substring(0, 4);
         String hum_String = data.substring(4, 8);
         String co2_String = data.substring(8, 12);

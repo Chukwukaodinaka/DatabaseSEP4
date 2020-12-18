@@ -1,10 +1,8 @@
 package org.SEP4_Data.service.model.source;
 
 import lombok.*;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @lombok.Data
